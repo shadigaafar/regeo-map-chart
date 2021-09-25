@@ -15,7 +15,7 @@ npm i regeo-map-chart
 ```
 
 
-<img src="./example.gif" alt="Regeo Map Chart"/>
+<img src="https://raw.githubusercontent.com/shadigaafar/regeo-map-chart/main/example.gif" alt="Regeo Map Chart"/>
 
 ## Quick Start
 ```javascript
@@ -96,5 +96,4 @@ By default Countries Name will be in English or Arabic depending on the app lang
 }
 
 ```
-please make  -->
-
+please make to make your localization json based on this one: -->

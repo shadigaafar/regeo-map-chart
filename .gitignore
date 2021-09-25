@@ -11,6 +11,15 @@
 # production
 /build
 
+# dist
+/dist
+
+#rollup
+rollup.config.js
+
+#dddd
+dddd.js
+
 # misc
 .DS_Store
 .env.local
