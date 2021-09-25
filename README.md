@@ -73,27 +73,27 @@ export default ExampleGeoChart;
 
 ```
 
-<!-- ## Localizing Countries Names
-By default Countries Name will be in English or Arabic depending on the app language. for adding other languages, you can pass an object or json file to the prop ``regionNamesText`` in this format:
+## Localizing Countries Names
+By default Countries Name will be in English or Arabic depending on the app language. For adding other languages, you can pass an object or json file to the prop ``regionNamesText`` in this format:
 
 ```json
 {
     "regions": [
         {
             "id": "ad",
-            "name": "أندورا"
+            "name": "Andorra"
         },
         {
             "id": "ae",
-            "name": "الإمارات العربية المتحدة"
+            "name": "United Arab Emirates"
         },
         {
             "id": "af",
-            "name": "أفغانستان"
+            "name": "Afghanistan"
         },
         ....
     ]
 }
 
 ```
-please make to make your localization json based on this one: -->
+NOTE: Because order and structure matter, please make sure to make your localization json file based on this one: https://github.com/shadigaafar/regeo-map-chart/blob/main/src/docs/locales/world.en.json. 
