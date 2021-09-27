@@ -5,11 +5,11 @@
     left: 2%;
     justify-content: space-between;
     width: 25%;
-    min-width: 200;
+    min-width: 200px;
     align-items: center;
 }
 .textValue {
-    font-size: 12;
+    font-size: 1em;
     padding: 0  10px;
 }
 .legendBar {
