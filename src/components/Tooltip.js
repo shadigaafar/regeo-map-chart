@@ -11,7 +11,7 @@ function Tooltip({
     getRegionDataByID,
     regionNamesText,
 }) {
-    const { siteLang, isRTL, cursorCoordinates } = useCursorPos();
+    const { siteLang, cursorCoordinates } = useCursorPos();
     const { x, y } = cursorCoordinates;
 
     const selectedRegionData = getRegionDataByID(pointedAtRegion?.id);
@@ -24,15 +24,13 @@ function Tooltip({
         (region) => region.id === pointedAtRegion?.id
     );
 
-    const rightLeftPosition = isRTL ? "right" : "left";
-
     if (!isActive) return null;
     return (
         <div
             className={TooltipStyle.container}
             style={{
                 top: y,
-                [rightLeftPosition]: x + 30,
+                left: x + 30,
             }}
         >
             <div className={TooltipStyle.titleWrapper}>
