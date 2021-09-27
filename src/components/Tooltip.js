@@ -2,17 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import worldAr from "../docs/locales/world.ar.json";
 import useCursorPos from "../hooks/useCursorPos";
-
-const tooltip = {
-    display: "flex",
-    flexDirection: "column",
-    position: "absolute",
-    padding: 15,
-    backgroundColor: "#E0E0E0",
-    border: "1px solid black",
-    zIndex: 100,
-    width: "fit-content",
-};
+import ReactCountryFlag from "react-country-flag";
+import TooltipStyle from "./Tooltip.module.css";
 
 function Tooltip({
     isActive,
@@ -38,24 +29,30 @@ function Tooltip({
     if (!isActive) return null;
     return (
         <div
-            className="react-map-tooltip"
+            className={TooltipStyle.container}
             style={{
                 top: y,
                 [rightLeftPosition]: x + 30,
-                ...tooltip,
             }}
         >
-            <strong>
-                {siteLang === "ar"
-                    ? arabicRegionTextName.name
-                    : customRegionTextName
-                    ? customRegionTextName?.name
-                    : pointedAtRegion?.name}
-            </strong>
+            <div className={TooltipStyle.titleWrapper}>
+                <ReactCountryFlag
+                    countryCode={pointedAtRegion?.id}
+                    svg
+                    style={{ fontSize: "2em" }}
+                />
+                <strong className={TooltipStyle.title}>
+                    {siteLang === "ar"
+                        ? arabicRegionTextName.name
+                        : customRegionTextName
+                        ? customRegionTextName?.name
+                        : pointedAtRegion?.name}
+                </strong>
+            </div>
 
             {selectedRegionData
                 ? Object.entries(selectedRegionData).map((entry, index) => (
-                      <div key={index} style={{ padding: "5px 0" }}>
+                      <div key={index} className={TooltipStyle.content}>
                           <span>{entry[0]}: </span>
                           <span>{entry[1]}</span>
                       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import useData from "../hooks/useData";
 import Tooltip from "./Tooltip";
 import Legend from "./Legend";
+import ReMapStyle from "./ReMap.module.css";
 
 const ReMap = ({
     layerProps,
@@ -43,6 +44,7 @@ const ReMap = ({
     if (typeof regionLayer === "undefined") return null;
     return (
         <div
+            className={ReMapStyle.container}
             style={{
                 position: "relative",
                 backgroundColor: backgroundColor ? backgroundColor : null,
