@@ -41,6 +41,7 @@ const ReMap = ({
     const toolTipProps = {
         getRegionDataByID,
         pointedAtRegion,
+        tooltipBackgroundColor,
     };
 
     if (typeof regionLayer === "undefined") return null;
