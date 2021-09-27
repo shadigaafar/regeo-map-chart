@@ -18,7 +18,7 @@ npm i regeo-map-chart
 ```
 
 
-<img src="https://raw.githubusercontent.com/shadigaafar/regeo-map-chart/main/ex.gif" alt="Regeo Map Chart"/>
+<img src="https://raw.githubusercontent.com/shadigaafar/regeo-map-chart/main/regoeMap-example.gif" alt="Regeo Map Chart"/>
 
 ## Quick Start
 ```javascript
