@@ -6,6 +6,7 @@ React Component for Geo Chart
 ## New Feature
 - Country flags added
 - customize stroke color for regions through the prop ``strokeColor``
+- customize tooltip background color through the prop ``tooltipBackgroundColor``
 
 ## Features Not Existed In Google Geo Chart
 - **يدعم اللغة العربية بشكل كامل**
@@ -70,6 +71,7 @@ function ExampleGeoChart() {
              backgroundColor="#fff"
              hideMapLegend={true}
              strokeColor="#737373"
+             tooltipBackgroundColor="#082032"
              />
     );
 }
