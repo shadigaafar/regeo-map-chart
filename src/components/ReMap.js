@@ -13,6 +13,7 @@ const ReMap = ({
     hideMapLegend,
     width,
     strokeColor,
+    tooltipBackgroundColor,
     ...other
 }) => {
     const {

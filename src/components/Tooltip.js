@@ -10,6 +10,7 @@ function Tooltip({
     pointedAtRegion,
     getRegionDataByID,
     regionNamesText,
+    tooltipBackgroundColor,
 }) {
     const { siteLang, cursorCoordinates } = useCursorPos();
     const { x, y } = cursorCoordinates;
@@ -31,6 +32,7 @@ function Tooltip({
             style={{
                 top: y,
                 left: x + 30,
+                backgroundColor: tooltipBackgroundColor,
             }}
         >
             <div className={TooltipStyle.titleWrapper}>

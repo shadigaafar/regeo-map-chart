@@ -4,7 +4,6 @@
     flex-direction: column;
     position: absolute;
     padding: 0.5em;
-    background-color: #E0E0E0;
     border: 1px solid black;
     z-index: 100;
     width: fit-content;

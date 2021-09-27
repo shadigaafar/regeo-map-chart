@@ -19,6 +19,7 @@ ReGeoMapChart.defaultProps = {
     hideMapLegend: false,
     width: "",
     strokeColor: "#fff",
+    tooltipBackgroundColor: "#E0E0E0",
 };
 ReGeoMapChart.propTypes = {
     data: PropTypes.arrayOf(PropTypes.array).isRequired,
@@ -37,4 +38,5 @@ ReGeoMapChart.propTypes = {
     hideMapLegend: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     strokeColor: PropTypes.string,
+    tooltipBackgroundColor: PropTypes.string,
 };
