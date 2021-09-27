@@ -25,6 +25,7 @@
     "type": "git",
     "url": "https://github.com/shadigaafar/regeo-map-chart"
   },
+  "files": [],
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-react": "^7.14.5",
