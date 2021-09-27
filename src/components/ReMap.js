@@ -12,6 +12,7 @@ const ReMap = ({
     regionNamesText,
     hideMapLegend,
     width,
+    strokeColor,
     ...other
 }) => {
     const {
@@ -83,11 +84,12 @@ const ReMap = ({
                                         ? colorizeRegions(layer.id)
                                         : datalessRegionColor
                                 }
+                                stroke={
+                                    layer.id === regionLayer.layerID
+                                        ? "red"
+                                        : strokeColor
+                                }
                                 style={{
-                                    stroke:
-                                        layer.id === regionLayer.layerID
-                                            ? "red"
-                                            : "#fff",
                                     cursor: "pointer",
                                     strokeWidth: 0.5,
                                 }}
