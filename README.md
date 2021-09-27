@@ -5,7 +5,7 @@ React Component for Geo Chart
 
 ## New Feature
 - Country flags added
-- You can customize stroke color for regions through the prop ``strokeColor``
+- customize stroke color for regions through the prop ``strokeColor``
 
 ## Features Not Existed In Google Geo Chart
 - **يدعم اللغة العربية بشكل كامل**
