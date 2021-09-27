@@ -2,7 +2,7 @@
   "name": "regeo-map-chart",
   "version": "1.1.7",
   "description": "React Component for Geo Chart",
-  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-lib": "rollup -c",
