@@ -1,6 +1,6 @@
 {
   "name": "regeo-map-chart",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "React Component for Geo Chart",
   "main": "dist/index.js",
   "scripts": {
