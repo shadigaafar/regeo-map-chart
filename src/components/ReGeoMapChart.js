@@ -4,13 +4,13 @@ import ReMap from "./ReMap";
 import world from "../docs/world.json";
 import PropTypes from "prop-types";
 
-export const ReGeoMapChart = (props) => {
+export const ReGeoMapChart = React.memo((props) => {
 	return (
 		<MapDataProvider data={props.data}>
 			<ReMap {...world} {...props} />
 		</MapDataProvider>
 	);
-};
+});
 
 ReGeoMapChart.defaultProps = {
 	datalessRegionColor: "#D3D3D3",
