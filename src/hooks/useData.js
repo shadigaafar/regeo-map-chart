@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useMapData } from "../contexts/MapDataProvider";
 import worldMapData from "../docs/world.json";
 
