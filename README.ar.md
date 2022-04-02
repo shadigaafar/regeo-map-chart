@@ -1,21 +1,20 @@
-# Regeo Map Chart
+# Regeo Map Chart 
 
-[بالعربي](https://github.com/shadigaafar/regeo-map-chart/blob/main/README.ar.md)
 
-React Component for Geo Chart
+مًكوّن ريأكت لـ المخططات البيانية الجغرافية
 
-## New Feature
-- Country flags added
-- customize stroke color for regions through the prop ``strokeColor``
-- customize tooltip background color through the prop ``tooltipBackgroundColor``
+## ميزات جديدة
+- تم إضافة أعلام الدول 
+- تستطيع الآن تخصيص لون حدود المناطق عبر الخاصية ``strokeColor``
+- يمكنك تخصيص لون خلفية «رسالة التلميح» عبر الخاصية: ``tooltipBackgroundColor``
 
-## Features Not Existed In Google Geo Chart
+## ميزات غير متوفرة في Google Geo Chart
 - **يدعم اللغة العربية بشكل كامل**
--  **Support RTL**
-- **Localization Support**
+-  **يدعم اليمين إلى اليسار**
+- **يدعم الترجمة إلى لغات أخرى**
 
 
-## Installation
+## التنصيب
 ```sh
 npm i regeo-map-chart
 ```
@@ -23,7 +22,7 @@ npm i regeo-map-chart
 
 <img src="https://raw.githubusercontent.com/shadigaafar/regeo-map-chart/main/regoeMap-example.gif" alt="Regeo Map Chart"/>
 
-## Quick Start
+## بداية سريعة
 ```javascript
 import React from "react";
 import { ReGeoMapChart } from "regeo-map-chart";
@@ -49,7 +48,7 @@ export default App;
 
 ```
 
-## Customization
+## التخصيص
 ```javascript
 import React from "react";
 import { ReGeoMapChart } from "regeo-map-chart";
@@ -81,8 +80,8 @@ export default ExampleGeoChart;
 
 ```
 
-## Localizing Countries Names
-By default Countries Name will be in English or Arabic depending on html tag property ``lang`` of the app or website. For adding other languages, you can pass an object or json file to the prop ``regionNamesText`` in this format:
+## ترجمة أسماء البلدان
+بشكل افتراضي ، سيكون اسم البلدان باللغة الإنجليزية أو العربية اعتمادًا على خاصية ``lang`` لعلامة html للتطبيق أو موقع الويب. لإضافة لغات أخرى ، يمكنك تمرير كائن أو ملف json إلى الخاصية `` regionNamesText `` بهذا التنسيق:
 
 ```json
 {
@@ -103,4 +102,4 @@ By default Countries Name will be in English or Arabic depending on html tag pro
 }
 
 ```
-NOTE: Because order and structure matter, please make sure to make your localization json file based on this one: https://github.com/shadigaafar/regeo-map-chart/blob/main/src/docs/locales/world.en.json. 
+ملاحظة: نظرًا لأن الترتيب والهيكل مهمان، يرجى التأكد من جعل ملف json للترجمة موافقا لهذا: https://github.com/shadigaafar/regeo-map-chart/blob/main/src/docs/locales/world.en.json. 
