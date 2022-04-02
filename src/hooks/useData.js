@@ -58,10 +58,10 @@ const useData = (datafulRegionColor = "") => {
 		pointedAtRegionValueInPercentage,
 		setPointedAtRegionValueInPercentage,
 	] = useState(0);
-	const { data, isData } = useMapData();
+	const { data, isDataAvailable } = useMapData();
 
 	const getRegionDataByID = (id) => {
-		if (!id || !isData) return null;
+		if (!id || !isDataAvailable) return null;
 		const row = data.filter((r) => r[0] === id);
 		const _row =
 			row.length > 0
@@ -121,7 +121,7 @@ const useData = (datafulRegionColor = "") => {
 		return cellValue;
 	};
 	const generatePercentageOfRegionValue = (id) => {
-		if (!isData) return null;
+		if (!isDataAvailable) return null;
 
 		const percentage = convertValueToPercentage(
 			secondColumnCellValuesSorted[0],
@@ -164,7 +164,7 @@ const useData = (datafulRegionColor = "") => {
 	};
 
 	const colorizeRegions = (layerId) => {
-		if (!isData) return null;
+		if (!isDataAvailable) return null;
 
 		const regionCodes = rows.map((r) => r[0]);
 
@@ -188,7 +188,7 @@ const useData = (datafulRegionColor = "") => {
 	};
 
 	const getMapDataMaxAndMinValues = () => {
-		if (!isData) return null;
+		if (!isDataAvailable) return null;
 		const max = secondColumnCellValuesSorted[0];
 		const min =
 			secondColumnCellValuesSorted[
@@ -230,7 +230,7 @@ const useData = (datafulRegionColor = "") => {
 		handleOnMouseOver,
 		getLegendPointerArrowPosition,
 		getMinValueAssociatedColor,
-		isData,
+		isDataAvailable,
 	};
 };
 
