@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useMapData } from "../contexts/MapDataProvider";
 import worldMapData from "../docs/world.json";
 
@@ -9,229 +9,229 @@ import worldMapData from "../docs/world.json";
  * @returns an object with new layers and the id of the layer that has been moved the last of the array
  */
 const moveSelectedLayerToLastPositionInLayersArray = (layers, layerIndex) => {
-    if (layers.length === 0) return null;
-    const filter = layers.filter((_item, index) => index !== layerIndex);
+	if (layers.length === 0) return null;
+	const filter = layers.filter((_item, index) => index !== layerIndex);
 
-    const newLayers = [...filter];
-    newLayers.push(layers[layerIndex]);
-    const layerID = layers[layerIndex].id;
-    return { newLayers, layerID };
+	const newLayers = [...filter];
+	newLayers.push(layers[layerIndex]);
+	const layerID = layers[layerIndex].id;
+	return { newLayers, layerID };
 };
 
 const convertValueToPercentage = (totalvalue, value) => {
-    const percentage = value / totalvalue;
-    return percentage;
+	const percentage = value / totalvalue;
+	return percentage;
 };
 
 function hexToRgba(hex, customOpacity) {
-    hex = hex.replace(/#/g, "");
-    if (hex.length === 3) {
-        hex = hex
-            .split("")
-            .map(function (hex) {
-                return hex + hex;
-            })
-            .join("");
-    }
-    const opacity = customOpacity ? customOpacity : 1;
-    var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(
-        hex
-    );
-    if (!result) {
-        return null;
-    }
-    const red = parseInt(result[1], 16);
-    const green = parseInt(result[2], 16);
-    const blue = parseInt(result[3], 16);
+	hex = hex.replace(/#/g, "");
+	if (hex.length === 3) {
+		hex = hex
+			.split("")
+			.map(function (hex) {
+				return hex + hex;
+			})
+			.join("");
+	}
+	const opacity = customOpacity ? customOpacity : 1;
+	var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(
+		hex
+	);
+	if (!result) {
+		return null;
+	}
+	const red = parseInt(result[1], 16);
+	const green = parseInt(result[2], 16);
+	const blue = parseInt(result[3], 16);
 
-    return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
+	return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 }
 
 const useData = (datafulRegionColor = "") => {
-    const { layers } = worldMapData;
-    const [regionLayer, setRegionLayer] = useState(() => ({
-        newLayers: layers,
-        layerID: "",
-    }));
-    const [pointedAtRegion, setPointedAtRegion] = useState({});
-    const [
-        pointedAtRegionValueInPercentage,
-        setPointedAtRegionValueInPercentage,
-    ] = useState(0);
-    const { data, isData } = useMapData();
+	const { layers } = worldMapData;
+	const [regionLayer, setRegionLayer] = useState(() => ({
+		newLayers: layers,
+		layerID: "",
+	}));
+	const [pointedAtRegion, setPointedAtRegion] = useState({});
+	const [
+		pointedAtRegionValueInPercentage,
+		setPointedAtRegionValueInPercentage,
+	] = useState(0);
+	const { data, isData } = useMapData();
 
-    const getRegionDataByID = (id) => {
-        if (!id || !isData) return null;
-        const row = data.filter((r) => r[0] === id);
-        const _row =
-            row.length > 0
-                ? row[0].filter((r, _index, arr) => arr.indexOf(r) !== 0)
-                : null;
+	const getRegionDataByID = (id) => {
+		if (!id || !isData) return null;
+		const row = data.filter((r) => r[0] === id);
+		const _row =
+			row.length > 0
+				? row[0].filter((r, _index, arr) => arr.indexOf(r) !== 0)
+				: null;
 
-        const columns = [...data[0]];
-        columns.shift();
+		const columns = [...data[0]];
+		columns.shift();
 
-        let regionData = {};
+		let regionData = {};
 
-        if (_row && _row.length > 0) {
-            columns.forEach((col, i) => {
-                regionData[col] = _row[i];
-            });
-        }
+		if (_row && _row.length > 0) {
+			columns.forEach((col, i) => {
+				regionData[col] = _row[i];
+			});
+		}
 
-        return regionData;
-    };
+		return regionData;
+	};
 
-    const getPointedAtRegionValue = () => {
-        if (Object.entries(pointedAtRegion).length === 0) return null;
-        const value = Object.values(
-            getRegionDataByID(pointedAtRegion.id)
-        ).filter((v, _i, arr) => arr.indexOf(v) === 0);
-        return value[0];
-    };
+	const getPointedAtRegionValue = () => {
+		if (Object.entries(pointedAtRegion).length === 0) return null;
+		const value = Object.values(
+			getRegionDataByID(pointedAtRegion.id)
+		).filter((v, _i, arr) => arr.indexOf(v) === 0);
+		return value[0];
+	};
 
-    const changeZIndexOfSelectedLayer = (index) => {
-        //note: this for putting the selected layer to top in order not
-        //to be overlapped with surrounded layer so that the red stroke on selection appear clearly
-        //you might be asking why not using <use/> tag to duplicate it in order to show on the top,
-        // but believe me I have tried that, but It makes the whole selection breaks.
-        setRegionLayer(
-            moveSelectedLayerToLastPositionInLayersArray(
-                regionLayer.newLayers,
-                index
-            )
-        );
-    };
+	const changeZIndexOfSelectedLayer = (index) => {
+		//note: this for putting the selected layer to top in order not
+		//to be overlapped with surrounded layer so that the red stroke on selection appear clearly
+		//you might be asking why not using <use/> tag to duplicate it in order to show on the top,
+		// but believe me I have tried that, but It makes the whole selection breaks.
+		setRegionLayer(
+			moveSelectedLayerToLastPositionInLayersArray(
+				regionLayer.newLayers,
+				index
+			)
+		);
+	};
 
-    const rows = data?.filter((itm, _i, arr) => arr.indexOf(itm) !== 0);
+	const rows = data?.filter((itm, _i, arr) => arr.indexOf(itm) !== 0);
 
-    const secondColumnCellValues = rows?.map((r) => r[1]);
-    const secondColumnCellValuesSorted = secondColumnCellValues?.sort(
-        (a, b) => b - a
-    );
+	const secondColumnCellValues = rows?.map((r) => r[1]);
+	const secondColumnCellValuesSorted = secondColumnCellValues?.sort(
+		(a, b) => b - a
+	);
 
-    const getSingleRow = (id) => {
-        const row = rows?.filter((r) => r[0] === id);
-        return row;
-    };
+	const getSingleRow = (id) => {
+		const row = rows?.filter((r) => r[0] === id);
+		return row;
+	};
 
-    const getSecondColumnSingleValue = (rowId) => {
-        const row = getSingleRow(rowId);
-        const cellValue = row.length > 0 ? row[0][1] : null;
-        return cellValue;
-    };
-    const generatePercentageOfRegionValue = (id) => {
-        if (!isData) return null;
+	const getSecondColumnSingleValue = (rowId) => {
+		const row = getSingleRow(rowId);
+		const cellValue = row.length > 0 ? row[0][1] : null;
+		return cellValue;
+	};
+	const generatePercentageOfRegionValue = (id) => {
+		if (!isData) return null;
 
-        const percentage = convertValueToPercentage(
-            secondColumnCellValuesSorted[0],
-            getSecondColumnSingleValue(id)
-        );
+		const percentage = convertValueToPercentage(
+			secondColumnCellValuesSorted[0],
+			getSecondColumnSingleValue(id)
+		);
 
-        setPointedAtRegionValueInPercentage(percentage);
-        return percentage;
-    };
-    const regionsColor = datafulRegionColor ? datafulRegionColor : "#047FFE";
+		setPointedAtRegionValueInPercentage(percentage);
+		return percentage;
+	};
+	const regionsColor = datafulRegionColor ? datafulRegionColor : "#047FFE";
 
-    const RegionColorWithExtremelySmallRatioValue = () => {
-        const notExceededMinPercentage = secondColumnCellValues.every(
-            (cellValue) => {
-                const percentage = convertValueToPercentage(
-                    secondColumnCellValuesSorted[0],
-                    cellValue
-                );
+	const getRegionColorWithExtremelySmallRatioValue = () => {
+		const notExceededMinPercentage = secondColumnCellValues.every(
+			(cellValue) => {
+				const percentage = convertValueToPercentage(
+					secondColumnCellValuesSorted[0],
+					cellValue
+				);
 
-                return percentage > 0.2;
-            }
-        );
-        console.log("regionsColor", secondColumnCellValues);
-        return notExceededMinPercentage ? false : "#C4BF9C";
-    };
-    const handleOnMouseOver = (index, layer) => {
-        changeZIndexOfSelectedLayer(index);
-        setPointedAtRegion(layer);
+				return percentage > 0.2;
+			}
+		);
 
-        generatePercentageOfRegionValue(layer.id);
-    };
+		return notExceededMinPercentage ? false : "#C4BF9C";
+	};
+	const handleOnMouseOver = (index, layer) => {
+		changeZIndexOfSelectedLayer(index);
+		setPointedAtRegion(layer);
 
-    const handleOnMouseOut = () => {
-        setRegionLayer((prev) => ({
-            ...prev,
-            layerID: "",
-        }));
-        setPointedAtRegion({});
-        setPointedAtRegionValueInPercentage(0);
-    };
+		generatePercentageOfRegionValue(layer.id);
+	};
 
-    const colorizeRegions = (layerId) => {
-        if (!isData) return null;
+	const handleOnMouseOut = () => {
+		setRegionLayer((prev) => ({
+			...prev,
+			layerID: "",
+		}));
+		setPointedAtRegion({});
+		setPointedAtRegionValueInPercentage(0);
+	};
 
-        const regionCodes = rows.map((r) => r[0]);
+	const colorizeRegions = (layerId) => {
+		if (!isData) return null;
 
-        if (
-            getSecondColumnSingleValue(layerId) &&
-            regionCodes.includes(layerId)
-        ) {
-            const percentage = convertValueToPercentage(
-                secondColumnCellValuesSorted[0],
-                getSecondColumnSingleValue(layerId)
-            );
+		const regionCodes = rows.map((r) => r[0]);
 
-            const valueRatio = percentage < 0.2 ? 1 : percentage;
-            const regionColor =
-                percentage < 0.2
-                    ? RegionColorWithExtremelySmallRatioValue()
-                    : regionsColor;
-            console.log("colorizeRegions", secondColumnCellValuesSorted[0]);
-            return hexToRgba(regionColor, valueRatio);
-        }
-    };
+		if (
+			getSecondColumnSingleValue(layerId) &&
+			regionCodes.includes(layerId)
+		) {
+			const percentage = convertValueToPercentage(
+				secondColumnCellValuesSorted[0],
+				getSecondColumnSingleValue(layerId)
+			);
 
-    const getMapDataMaxAndMinValues = () => {
-        if (!isData) return null;
-        const max = secondColumnCellValuesSorted[0];
-        const min =
-            secondColumnCellValuesSorted[
-                secondColumnCellValuesSorted.length - 1
-            ];
-        return { min, max };
-    };
+			const valueRatio = percentage < 0.2 ? 1 : percentage;
+			const regionColor =
+				percentage < 0.2
+					? getRegionColorWithExtremelySmallRatioValue()
+					: regionsColor;
 
-    const getLegendPointerArrowPosition = (legendBarWidth) => {
-        if (!pointedAtRegionValueInPercentage) {
-            return null;
-        }
-        const positionX = pointedAtRegionValueInPercentage * legendBarWidth;
-        const { min } = getMapDataMaxAndMinValues();
-        if (getPointedAtRegionValue() === min) return 0;
-        return positionX;
-    };
+			return hexToRgba(regionColor, valueRatio);
+		}
+	};
 
-    const getMinValueAssociatedColor = () => {
-        const { min, max } = getMapDataMaxAndMinValues();
-        const percentage = RegionColorWithExtremelySmallRatioValue()
-            ? 1
-            : convertValueToPercentage(max, min);
-        const color = RegionColorWithExtremelySmallRatioValue()
-            ? RegionColorWithExtremelySmallRatioValue()
-            : regionsColor;
-        return hexToRgba(color, percentage);
-    };
+	const getMapDataMaxAndMinValues = () => {
+		if (!isData) return null;
+		const max = secondColumnCellValuesSorted[0];
+		const min =
+			secondColumnCellValuesSorted[
+				secondColumnCellValuesSorted.length - 1
+			];
+		return { min, max };
+	};
 
-    return {
-        getRegionDataByID,
-        colorizeRegions,
-        regionsColor,
-        getMapDataMaxAndMinValues,
-        worldMapData,
-        pointedAtRegion,
-        regionLayer,
-        handleOnMouseOut,
-        handleOnMouseOver,
-        getLegendPointerArrowPosition,
-        getMinValueAssociatedColor,
-        isData,
-    };
+	const getLegendPointerArrowPosition = (legendBarWidth) => {
+		if (!pointedAtRegionValueInPercentage) {
+			return null;
+		}
+		const positionX = pointedAtRegionValueInPercentage * legendBarWidth;
+		const { min } = getMapDataMaxAndMinValues();
+		if (getPointedAtRegionValue() === min) return 0;
+		return positionX;
+	};
+
+	const getMinValueAssociatedColor = () => {
+		const { min, max } = getMapDataMaxAndMinValues();
+		const percentage = getRegionColorWithExtremelySmallRatioValue()
+			? 1
+			: convertValueToPercentage(max, min);
+		const color = getRegionColorWithExtremelySmallRatioValue()
+			? getRegionColorWithExtremelySmallRatioValue()
+			: regionsColor;
+		return hexToRgba(color, percentage);
+	};
+
+	return {
+		getRegionDataByID,
+		colorizeRegions,
+		regionsColor,
+		getMapDataMaxAndMinValues,
+		worldMapData,
+		pointedAtRegion,
+		regionLayer,
+		handleOnMouseOut,
+		handleOnMouseOver,
+		getLegendPointerArrowPosition,
+		getMinValueAssociatedColor,
+		isData,
+	};
 };
 
 export default useData;
