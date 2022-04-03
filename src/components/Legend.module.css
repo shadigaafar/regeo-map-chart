@@ -1,26 +1,26 @@
 .container {
-    display: flex;
-    position: absolute;
-    bottom: 10%;
-    left: 2%;
-    justify-content: space-between;
-    width: 25%;
-    min-width: 200px;
-    align-items: center;
+	display: flex;
+	position: absolute;
+	bottom: 10%;
+	left: 2%;
+	justify-content: space-between;
+	width: 25%;
+	min-width: 200px;
+	align-items: center;
 }
 .textValue {
-    font-size: 1em;
-    padding: 0  10px;
+	font-size: 1em;
+	padding: 0 10px;
 }
 .legendBar {
-    position: relative;
-    display: inline-block;
-    flex: 1;
-    aspect-ratio: 15 / 1;
-    background-color: #fff;
+	position: relative;
+	display: inline-block;
+	flex: 1;
+	aspect-ratio: 15 / 1;
+	background-color: #fff;
 }
 .pointer {
-    position: absolute;
-    top: -10px;
-    line-height: 0;
+	position: absolute;
+	top: -10px;
+	line-height: 0;
 }

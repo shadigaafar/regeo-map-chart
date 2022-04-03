@@ -14,9 +14,6 @@
 # dist
 /dist
 
-#rollup
-rollup.config.js
-
 #dddd
 dddd.js
 

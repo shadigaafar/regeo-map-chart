@@ -1,8 +1,8 @@
-import React from "react";
-import { MapDataProvider } from "../contexts/MapDataProvider";
-import ReMap from "./ReMap";
-import world from "../docs/world.json";
-import PropTypes from "prop-types";
+import React from 'react';
+import { MapDataProvider } from '../contexts/MapDataProvider';
+import ReMap from './ReMap';
+import world from '../docs/world.json';
+import PropTypes from 'prop-types';
 
 export const ReGeoMapChart = React.memo((props) => {
 	return (
@@ -13,13 +13,13 @@ export const ReGeoMapChart = React.memo((props) => {
 });
 
 ReGeoMapChart.defaultProps = {
-	datalessRegionColor: "#D3D3D3",
-	datafulRegionColor: "#047FFE",
-	backgroundColor: "",
+	datalessRegionColor: '#D3D3D3',
+	datafulRegionColor: '#047FFE',
+	backgroundColor: '',
 	hideMapLegend: false,
-	width: "",
-	strokeColor: "#fff",
-	tooltipBackgroundColor: "#E0E0E0",
+	width: '',
+	strokeColor: '#fff',
+	tooltipBackgroundColor: '#E0E0E0',
 	style: {},
 };
 ReGeoMapChart.propTypes = {

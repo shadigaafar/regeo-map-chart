@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import useLanguageInfo from "./useLanguageInfo";
+import { useEffect, useState } from 'react';
+import useLanguageInfo from './useLanguageInfo';
 
 const useCursorPos = () => {
 	const [cursorCoordinates, setCursorCoordinates] = useState({
-		x: "",
-		y: "",
+		x: '',
+		y: '',
 	});
 
 	const { siteDir, siteLang, isRTL } = useLanguageInfo();
@@ -15,9 +15,9 @@ const useCursorPos = () => {
 
 			setCursorCoordinates({ x, y });
 		}
-		document.addEventListener("mousemove", handleOnMouseMove);
+		document.addEventListener('mousemove', handleOnMouseMove);
 		return () => {
-			document.removeEventListener("mousemove", handleOnMouseMove);
+			document.removeEventListener('mousemove', handleOnMouseMove);
 		};
 	}, [siteDir]);
 	return { siteLang, siteDir, cursorCoordinates, isRTL };

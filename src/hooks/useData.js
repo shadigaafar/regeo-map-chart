@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useMapData } from "../contexts/MapDataProvider";
-import worldMapData from "../docs/world.json";
+import { useState } from 'react';
+import { useMapData } from '../contexts/MapDataProvider';
+import worldMapData from '../docs/world.json';
 
 /**
  *
@@ -24,19 +24,17 @@ const convertValueToPercentage = (totalvalue, value) => {
 };
 
 function hexToRgba(hex, customOpacity) {
-	hex = hex.replace(/#/g, "");
+	hex = hex.replace(/#/g, '');
 	if (hex.length === 3) {
 		hex = hex
-			.split("")
+			.split('')
 			.map(function (hex) {
 				return hex + hex;
 			})
-			.join("");
+			.join('');
 	}
 	const opacity = customOpacity ? customOpacity : 1;
-	var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(
-		hex
-	);
+	var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(hex);
 	if (!result) {
 		return null;
 	}
@@ -47,11 +45,11 @@ function hexToRgba(hex, customOpacity) {
 	return `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 }
 
-const useData = (datafulRegionColor = "") => {
+const useData = (datafulRegionColor = '') => {
 	const { layers } = worldMapData;
 	const [regionLayer, setRegionLayer] = useState(() => ({
 		newLayers: layers,
-		layerID: "",
+		layerID: '',
 	}));
 	const [pointedAtRegion, setPointedAtRegion] = useState({});
 	const [
@@ -84,9 +82,9 @@ const useData = (datafulRegionColor = "") => {
 
 	const getPointedAtRegionValue = () => {
 		if (Object.entries(pointedAtRegion).length === 0) return null;
-		const value = Object.values(
-			getRegionDataByID(pointedAtRegion.id)
-		).filter((v, _i, arr) => arr.indexOf(v) === 0);
+		const value = Object.values(getRegionDataByID(pointedAtRegion.id)).filter(
+			(v, _i, arr) => arr.indexOf(v) === 0
+		);
 		return value[0];
 	};
 
@@ -96,10 +94,7 @@ const useData = (datafulRegionColor = "") => {
 		//you might be asking why not using <use/> tag to duplicate it in order to show on the top,
 		// but believe me I have tried that, but It makes the whole selection breaks.
 		setRegionLayer(
-			moveSelectedLayerToLastPositionInLayersArray(
-				regionLayer.newLayers,
-				index
-			)
+			moveSelectedLayerToLastPositionInLayersArray(regionLayer.newLayers, index)
 		);
 	};
 
@@ -131,7 +126,7 @@ const useData = (datafulRegionColor = "") => {
 		setPointedAtRegionValueInPercentage(percentage);
 		return percentage;
 	};
-	const regionsColor = datafulRegionColor ? datafulRegionColor : "#047FFE";
+	const regionsColor = datafulRegionColor ? datafulRegionColor : '#047FFE';
 
 	const getRegionColorWithExtremelySmallRatioValue = () => {
 		const notExceededMinPercentage = secondColumnCellValues.every(
@@ -145,7 +140,7 @@ const useData = (datafulRegionColor = "") => {
 			}
 		);
 
-		return notExceededMinPercentage ? false : "#C4BF9C";
+		return notExceededMinPercentage ? false : '#C4BF9C';
 	};
 	const handleOnMouseOver = (index, layer) => {
 		changeZIndexOfSelectedLayer(index);
@@ -157,7 +152,7 @@ const useData = (datafulRegionColor = "") => {
 	const handleOnMouseOut = () => {
 		setRegionLayer((prev) => ({
 			...prev,
-			layerID: "",
+			layerID: '',
 		}));
 		setPointedAtRegion({});
 		setPointedAtRegionValueInPercentage(0);
@@ -168,10 +163,7 @@ const useData = (datafulRegionColor = "") => {
 
 		const regionCodes = rows.map((r) => r[0]);
 
-		if (
-			getSecondColumnSingleValue(layerId) &&
-			regionCodes.includes(layerId)
-		) {
+		if (getSecondColumnSingleValue(layerId) && regionCodes.includes(layerId)) {
 			const percentage = convertValueToPercentage(
 				secondColumnCellValuesSorted[0],
 				getSecondColumnSingleValue(layerId)
@@ -191,9 +183,7 @@ const useData = (datafulRegionColor = "") => {
 		if (!isDataAvailable) return null;
 		const max = secondColumnCellValuesSorted[0];
 		const min =
-			secondColumnCellValuesSorted[
-				secondColumnCellValuesSorted.length - 1
-			];
+			secondColumnCellValuesSorted[secondColumnCellValuesSorted.length - 1];
 		return { min, max };
 	};
 

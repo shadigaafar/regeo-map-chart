@@ -1,14 +1,14 @@
 .container {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 @media screen and (min-width: 1000px) {
-    .container {
-        font-size: 14px;
-    }
+	.container {
+		font-size: 14px;
+	}
 }
 @media screen and (min-width: 1300px) {
-    .container {
-        font-size: 16px;
-    }
+	.container {
+		font-size: 16px;
+	}
 }

@@ -1,8 +1,8 @@
-import React from "react";
-import useData from "../hooks/useData";
-import Tooltip from "./Tooltip";
-import Legend from "./Legend";
-import ReMapStyle from "./ReMap.module.css";
+import React from 'react';
+import useData from '../hooks/useData';
+import Tooltip from './Tooltip';
+import Legend from './Legend';
+import ReMapStyle from './ReMap.module.css';
 
 const ReMap = ({
 	layerProps,
@@ -44,22 +44,20 @@ const ReMap = ({
 		tooltipBackgroundColor,
 	};
 
-	if (typeof regionLayer === "undefined") return null;
+	if (typeof regionLayer === 'undefined') return null;
 	return (
 		<div
 			className={ReMapStyle.container}
 			style={{
-				position: "relative",
+				position: 'relative',
 				backgroundColor: backgroundColor ? backgroundColor : null,
-				overflow: "visible",
+				overflow: 'visible',
 				width: width,
 				...style,
 			}}
 		>
 			<Tooltip
-				isActive={
-					Object.entries(pointedAtRegion).length !== 0 ? true : false
-				}
+				isActive={Object.entries(pointedAtRegion).length !== 0 ? true : false}
 				regionNamesText={regionNamesText}
 				{...toolTipProps}
 			/>
@@ -77,23 +75,17 @@ const ReMap = ({
 							<path fill="#fff" {...layer} />
 							<path
 								id={layer.id}
-								fontSize={"110px"}
-								onMouseOver={() =>
-									handleOnMouseOver(index, layer)
-								}
+								fontSize={'110px'}
+								onMouseOver={() => handleOnMouseOver(index, layer)}
 								onMouseOut={handleOnMouseOut}
 								fill={
 									colorizeRegions(layer.id)
 										? colorizeRegions(layer.id)
 										: datalessRegionColor
 								}
-								stroke={
-									layer.id === regionLayer.layerID
-										? "red"
-										: strokeColor
-								}
+								stroke={layer.id === regionLayer.layerID ? 'red' : strokeColor}
 								style={{
-									cursor: "pointer",
+									cursor: 'pointer',
 									strokeWidth: 0.5,
 								}}
 								aria-label={layer.name}
@@ -104,9 +96,7 @@ const ReMap = ({
 					))}
 				</g>
 			</svg>
-			{isDataAvailable && !hideMapLegend ? (
-				<Legend {...legendProps} />
-			) : null}
+			{isDataAvailable && !hideMapLegend ? <Legend {...legendProps} /> : null}
 		</div>
 	);
 };

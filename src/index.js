@@ -1,1 +1,1 @@
-export * from "./components/ReGeoMapChart";
+export * from './components/ReGeoMapChart';

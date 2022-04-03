@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 const MapDataContext = React.createContext();
 
@@ -13,8 +13,6 @@ export const MapDataProvider = ({ data, children }) => {
 		isDataAvailable,
 	};
 	return (
-		<MapDataContext.Provider value={value}>
-			{children}
-		</MapDataContext.Provider>
+		<MapDataContext.Provider value={value}>{children}</MapDataContext.Provider>
 	);
 };
