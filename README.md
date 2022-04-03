@@ -5,6 +5,7 @@
 React Component for Geo Chart
 
 ## New Feature
+- ``style`` prop to root
 - Country flags added
 - customize stroke color for regions through the prop ``strokeColor``
 - customize tooltip background color through the prop ``tooltipBackgroundColor``
@@ -29,7 +30,7 @@ import React from "react";
 import { ReGeoMapChart } from "regeo-map-chart";
 
 const data = [
-     ["Region", "Users", "Active Users"],
+    ["Region", "Users", "Active Users"],
     ["de", 252552, 25000],
     ["us", 852552, 162306],
     ["br", 452552, 52794],
@@ -73,6 +74,7 @@ function ExampleGeoChart() {
              hideMapLegend={true}
              strokeColor="#737373"
              tooltipBackgroundColor="#082032"
+             style={{maxWidth: 500}} // the styled applied to the div that wraps the svg
              />
     );
 }
@@ -99,7 +101,7 @@ By default Countries Name will be in English or Arabic depending on html tag pro
             "id": "af",
             "name": "Afghanistan"
         },
-        ...
+        ...]
 }
 
 ```

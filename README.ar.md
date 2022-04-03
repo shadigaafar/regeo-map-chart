@@ -4,6 +4,7 @@
 مًكوّن ريأكت لـ المخططات البيانية الجغرافية
 
 ## ميزات جديدة
+- تم إضافة خاصية ``style`` 
 - تم إضافة أعلام الدول 
 - تستطيع الآن تخصيص لون حدود المناطق عبر الخاصية ``strokeColor``
 - يمكنك تخصيص لون خلفية «رسالة التلميح» عبر الخاصية: ``tooltipBackgroundColor``
@@ -28,7 +29,7 @@ import React from "react";
 import { ReGeoMapChart } from "regeo-map-chart";
 
 const data = [
-     ["Region", "Users", "Active Users"],
+    ["Region", "Users", "Active Users"],
     ["de", 252552, 25000],
     ["us", 852552, 162306],
     ["br", 452552, 52794],
@@ -72,6 +73,7 @@ function ExampleGeoChart() {
              hideMapLegend={true}
              strokeColor="#737373"
              tooltipBackgroundColor="#082032"
+             style={{maxWidth: 500}} //التنسيق يُطبق على الـ div الذي يلف عنصر svg
              />
     );
 }
@@ -98,7 +100,7 @@ export default ExampleGeoChart;
             "id": "af",
             "name": "Afghanistan"
         },
-        ...
+        ...]
 }
 
 ```
