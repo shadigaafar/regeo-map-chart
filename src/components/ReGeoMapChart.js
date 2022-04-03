@@ -20,6 +20,7 @@ ReGeoMapChart.defaultProps = {
 	width: "",
 	strokeColor: "#fff",
 	tooltipBackgroundColor: "#E0E0E0",
+	style: {},
 };
 ReGeoMapChart.propTypes = {
 	data: PropTypes.arrayOf(PropTypes.array).isRequired,
@@ -39,4 +40,5 @@ ReGeoMapChart.propTypes = {
 	width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	strokeColor: PropTypes.string,
 	tooltipBackgroundColor: PropTypes.string,
+	style: PropTypes.object,
 };
