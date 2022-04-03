@@ -14,7 +14,7 @@ const ReMap = ({
 	width,
 	strokeColor,
 	tooltipBackgroundColor,
-	...other
+	style,
 }) => {
 	const {
 		pointedAtRegion,
@@ -53,6 +53,7 @@ const ReMap = ({
 				backgroundColor: backgroundColor ? backgroundColor : null,
 				overflow: "visible",
 				width: width,
+				...style,
 			}}
 		>
 			<Tooltip
@@ -68,7 +69,7 @@ const ReMap = ({
 				xmlnsXlink="http://www.w3.org/1999/xlink"
 				key={id}
 				aria-label={name}
-				{...other}
+				viewBox="0 0 1009.6727 665.96301"
 			>
 				<g>
 					{regionLayer.newLayers.map((layer, index) => (
